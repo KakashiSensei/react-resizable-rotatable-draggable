@@ -24,7 +24,7 @@
     "build-example": "cd example && npm install && npm run build",
     "publish-dev": "npm publish --tag dev",
     "start": "npm run build-dev",
-    "deploy": "npm run build && npm run build-example && gh-pages -d example/dist",
+    "deploy": "npm run build && npm run build-example",
     "prepack": "npm run build"
   },
   "peerDependencies": {

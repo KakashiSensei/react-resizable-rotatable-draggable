@@ -2,12 +2,12 @@ import styled from 'styled-components'
 
 export default styled.div`
   position: absolute;
-  border: 1px solid #9C27B0;
+  border: 3px solid #9c27b0;
 
   .circle {
     position: absolute;
-    width: 7px;
-    height: 7px;
+    width: 14px;
+    height: 14px;
     background: white;
     border: 1px solid white;
     border-radius: 50%;
@@ -22,40 +22,6 @@ export default styled.div`
     height: 14px;
     cursor: pointer;
     z-index: 1;
-
-    &.tl,
-    &.t,
-    &.tr {
-      top: -7px;
-    }
-
-    &.tl,
-    &.l,
-    &.bl {
-      left: -7px;
-    }
-
-    &.bl,
-    &.b,
-    &.br {
-      bottom: -7px;
-    }
-
-    &.br,
-    &.r,
-    &.tr {
-      right: -7px;
-    }
-
-    &.l,
-    &.r {
-      margin-top: -7px;
-    }
-
-    &.t,
-    &.b {
-      margin-left: -7px;
-    }
   }
 
   .rotate {
@@ -63,10 +29,10 @@ export default styled.div`
     border-radius: 50%;
     position: absolute;
     left: 50%;
-    top: -30px;
-    width: 22px;
-    height: 22px;
-    margin-left: -9px;
+    transform: translate(-50%, -50%);
+    top: -40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,36 +45,68 @@ export default styled.div`
   .t,
   .tl,
   .tr {
-    top: -3px;
+    top: 0px;
   }
 
   .b,
   .bl,
   .br {
-    bottom: -3px;
+    bottom: 0px;
   }
 
   .r,
   .tr,
   .br {
-    right: -3px;
+    right: 0px;
   }
 
   .tl,
   .l,
   .bl {
-    left: -3px;
+    left: 0px;
   }
 
   .l,
   .r {
     top: 50%;
-    margin-top: -3px;
+    margin-top: 0px;
   }
 
   .t,
   .b {
     left: 50%;
-    margin-left: -3px;
+    margin-left: 0px;
+  }
+
+  .t {
+    transform: translate(-50%, -50%);
+  }
+
+  .b {
+    transform: translate(-50%, 50%);
+  }
+
+  .l {
+    transform: translate(-50%, -50%);
+  }
+
+  .r {
+    transform: translate(50%, -50%);
+  }
+
+  .tl {
+    transform: translate(-50%, -50%);
+  }
+
+  .tr {
+    transform: translate(50%, -50%);
+  }
+
+  .bl {
+    transform: translate(-50%, 50%);
+  }
+
+  .br {
+    transform: translate(50%, 50%);
   }
 `

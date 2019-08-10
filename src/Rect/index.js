@@ -185,7 +185,7 @@ export default class Rect extends PureComponent {
         {
           direction.map(d => {
             return (
-              <div key={d} className={`${zoomableMap[ d ]} square`} />
+              <div key={d} className={`${zoomableMap[ d ]} circle`} />
             )
           })
         }
