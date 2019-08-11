@@ -19,7 +19,7 @@ export default class ResizableRect extends Component {
       PropTypes.number,
       PropTypes.bool
     ]),
-    visibility: PropTypes.string,
+    style: PropTypes.any,
     onRotateStart: PropTypes.func,
     onRotate: PropTypes.func,
     onRotateEnd: PropTypes.func,
@@ -81,11 +81,11 @@ export default class ResizableRect extends Component {
 
   render () {
     const {
-      top, left, width, height, rotateAngle, parentRotateAngle, zoomable, rotatable, visibility,
+      top, left, width, height, rotateAngle, parentRotateAngle, zoomable, rotatable, style,
       onRotate, onResizeStart, onResizeEnd, onRotateStart, onRotateEnd, onDragStart, onDragEnd
     } = this.props
 
-    const styles = { ...tLToCenter({ top, left, width, height, rotateAngle }), visibility }
+    const styles = { ...tLToCenter({ top, left, width, height, rotateAngle }), ...style }
 
     return (
       <Rect

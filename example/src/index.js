@@ -51,7 +51,7 @@ class App extends PureComponent {
       minWidth: -Infinity,
       minHeight: -Infinity,
       zoomable: 'n, w, s, e, nw, ne, se, sw',
-      visibility: 'visible',
+      style: { visibility: 'visible' },
       // rotatable: true,
       onRotateStart: this.handleRotateStart,
       onRotate: this.handleRotate,

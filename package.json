@@ -1,16 +1,11 @@
 {
-  "name": "react-resizable-rotatable-draggable",
-  "version": "0.3.0-dev.0",
+  "name": "react-editable-resize",
+  "version": "0.0.1",
   "description": "A rectangle react component which can be resized and rotated",
-  "author": "MockingBot",
+  "author": "Vivek Fitkariwala",
   "license": "MIT",
-  "repository": "github:mockingbot/react-resizable-rotatable-draggable",
-  "keywords": [
-    "react",
-    "rectangle",
-    "resize",
-    "rotate"
-  ],
+  "repository": "https://github.com/KakashiSensei/react-resizable-rotatable-draggable",
+  "keywords": [],
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
