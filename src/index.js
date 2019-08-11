@@ -85,11 +85,12 @@ export default class ResizableRect extends Component {
       onRotate, onResizeStart, onResizeEnd, onRotateStart, onRotateEnd, onDragStart, onDragEnd
     } = this.props
 
-    const styles = { ...tLToCenter({ top, left, width, height, rotateAngle }), ...style }
+    const styles = { ...tLToCenter({ top, left, width, height, rotateAngle }) }
 
     return (
       <Rect
         styles={styles}
+        style={style}
         zoomable={zoomable}
         rotatable={Boolean(rotatable && onRotate)}
         parentRotateAngle={parentRotateAngle}

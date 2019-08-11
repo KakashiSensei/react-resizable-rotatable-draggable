@@ -17,6 +17,7 @@ const zoomableMap = {
 export default class Rect extends PureComponent {
   static propTypes = {
     styles: PropTypes.object,
+    style: PropTypes.object,
     zoomable: PropTypes.string,
     rotatable: PropTypes.bool,
     onResizeStart: PropTypes.func,
@@ -136,20 +137,20 @@ export default class Rect extends PureComponent {
       styles: {
         position: { centerX, centerY },
         size: { width, height },
-        transform: { rotateAngle },
-        visibility
+        transform: { rotateAngle }
       },
+      style,
       zoomable,
       rotatable,
       parentRotateAngle
     } = this.props
-    const style = {
+    const styleRect = {
       width: Math.abs(width),
       height: Math.abs(height),
       transform: `rotate(${rotateAngle}deg)`,
       left: centerX - Math.abs(width) / 2,
       top: centerY - Math.abs(height) / 2,
-      visibility
+      ...style
     }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d) // TODO: may be speed up
 
@@ -158,7 +159,7 @@ export default class Rect extends PureComponent {
         ref={this.setElementRef}
         onMouseDown={this.startDrag}
         className="rect single-resizer"
-        style={style}
+        style={styleRect}
       >
         {
           rotatable &&
