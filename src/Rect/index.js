@@ -36,10 +36,12 @@ export default class Rect extends PureComponent {
 
   // Drag
   startDrag = (e) => {
+    e.persist()
     let { clientX: startX, clientY: startY } = e
     this.props.onDragStart && this.props.onDragStart(e)
     this._isMouseDown = true
     const onMove = (e) => {
+      e.persist()
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
@@ -49,7 +51,8 @@ export default class Rect extends PureComponent {
       startX = clientX
       startY = clientY
     }
-    const onUp = () => {
+    const onUp = (e) => {
+      e.persist()
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
       if (!this._isMouseDown) return
@@ -62,6 +65,7 @@ export default class Rect extends PureComponent {
 
   // Rotate
   startRotate = (e) => {
+    e.persist()
     if (e.button !== 0) return
     const { clientX, clientY } = e
     const { styles: { transform: { rotateAngle: startAngle } } } = this.props
@@ -77,6 +81,7 @@ export default class Rect extends PureComponent {
     this.props.onRotateStart && this.props.onRotateStart(e)
     this._isMouseDown = true
     const onMove = (e) => {
+      e.persist()
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
@@ -87,7 +92,8 @@ export default class Rect extends PureComponent {
       const angle = getAngle(startVector, rotateVector)
       this.props.onRotate(angle, startAngle)
     }
-    const onUp = () => {
+    const onUp = (e) => {
+      e.persist()
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
       if (!this._isMouseDown) return
@@ -100,6 +106,7 @@ export default class Rect extends PureComponent {
 
   // Resize
   startResize = (e, cursor) => {
+    e.persist()
     if (e.button !== 0) return
     document.body.style.cursor = cursor
     const { styles: { position: { centerX, centerY }, size: { width, height }, transform: { rotateAngle } } } = this.props
@@ -109,6 +116,7 @@ export default class Rect extends PureComponent {
     this.props.onResizeStart && this.props.onResizeStart(e)
     this._isMouseDown = true
     const onMove = (e) => {
+      e.persist()
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
@@ -120,7 +128,8 @@ export default class Rect extends PureComponent {
       this.props.onResize(deltaL, alpha, rect, type, isShiftKey)
     }
 
-    const onUp = () => {
+    const onUp = (e) => {
+      e.persist()
       document.body.style.cursor = 'auto'
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)

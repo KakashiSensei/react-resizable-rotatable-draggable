@@ -14,6 +14,7 @@ export default styled.div`
     -moz-box-shadow: 0px 0px 5px 1px #ccc;
     -webkit-box-shadow: 0px 0px 5px 1px #ccc;
     box-shadow: 0px 0px 5px 1px #ccc;
+    pointer-events: auto;
   }
 
   .resizable-handler {
@@ -22,6 +23,7 @@ export default styled.div`
     height: 14px;
     cursor: pointer;
     z-index: 1;
+    pointer-events: auto;
   }
 
   .rotate {
@@ -40,6 +42,7 @@ export default styled.div`
     -moz-box-shadow: 0px 0px 5px 1px #ccc;
     -webkit-box-shadow: 0px 0px 5px 1px #ccc;
     box-shadow: 0px 0px 5px 1px #ccc;
+    pointer-events: auto;
   }
 
   .t,
