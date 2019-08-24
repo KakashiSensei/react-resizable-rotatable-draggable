@@ -41,7 +41,6 @@ export default class Rect extends PureComponent {
     this.props.onDragStart && this.props.onDragStart(e)
     this._isMouseDown = true
     const onMove = (e) => {
-      e.persist()
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
@@ -52,7 +51,6 @@ export default class Rect extends PureComponent {
       startY = clientY
     }
     const onUp = (e) => {
-      e.persist()
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
       if (!this._isMouseDown) return
@@ -81,7 +79,6 @@ export default class Rect extends PureComponent {
     this.props.onRotateStart && this.props.onRotateStart(e)
     this._isMouseDown = true
     const onMove = (e) => {
-      e.persist()
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
@@ -93,7 +90,6 @@ export default class Rect extends PureComponent {
       this.props.onRotate(angle, startAngle)
     }
     const onUp = (e) => {
-      e.persist()
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
       if (!this._isMouseDown) return
@@ -116,7 +112,6 @@ export default class Rect extends PureComponent {
     this.props.onResizeStart && this.props.onResizeStart(e)
     this._isMouseDown = true
     const onMove = (e) => {
-      e.persist()
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
@@ -129,7 +124,6 @@ export default class Rect extends PureComponent {
     }
 
     const onUp = (e) => {
-      e.persist()
       document.body.style.cursor = 'auto'
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
