@@ -1,6 +1,6 @@
 {
   "name": "react-editable-resize",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A rectangle react component which can be resized and rotated",
   "author": "Vivek Fitkariwala",
   "license": "MIT",
