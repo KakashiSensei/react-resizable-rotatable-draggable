@@ -22,8 +22,8 @@ export default styled.div`
     width: 14px;
     height: 14px;
     cursor: pointer;
-    z-index: 1;
     pointer-events: auto;
+    z-index: 1000;
   }
 
   .rotate {
@@ -43,6 +43,7 @@ export default styled.div`
     -webkit-box-shadow: 0px 0px 5px 1px #ccc;
     box-shadow: 0px 0px 5px 1px #ccc;
     pointer-events: auto;
+    z-index: 1000;
   }
 
   .t,

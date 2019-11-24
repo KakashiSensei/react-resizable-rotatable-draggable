@@ -20,6 +20,7 @@ export default class Rect extends PureComponent {
     style: PropTypes.object,
     zoomable: PropTypes.string,
     rotatable: PropTypes.bool,
+    zIndex: PropTypes.number,
     onResizeStart: PropTypes.func,
     onResize: PropTypes.func,
     onResizeEnd: PropTypes.func,
@@ -145,23 +146,37 @@ export default class Rect extends PureComponent {
       style,
       zoomable,
       rotatable,
-      parentRotateAngle
+      parentRotateAngle,
+      zIndex
     } = this.props
-    const styleRect = {
+    const baseStyleRect = {
       width: Math.abs(width),
       height: Math.abs(height),
       transform: `rotate(${rotateAngle}deg)`,
       left: centerX - Math.abs(width) / 2,
       top: centerY - Math.abs(height) / 2,
-      ...style,
+      ...style
+    }
+    const styleRect = {
+      ...baseStyleRect,
       pointerEvents: 'none'
+    }
+    const draggableStyleRect = {
+      ...baseStyleRect,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      transform: 'none',
+      width: styleRect.width - 6,
+      height: styleRect.height - 6,
+      zIndex: zIndex || 0,
+      pointerEvents: 'auto'
     }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d) // TODO: may be speed up
 
     return (
       <StyledRect
         ref={this.setElementRef}
-        onMouseDown={this.startDrag}
         className="rect single-resizer"
         style={styleRect}
       >
@@ -194,6 +209,7 @@ export default class Rect extends PureComponent {
             )
           })
         }
+        <div className="rect single-resizer" onMouseDown={this.startDrag} style={draggableStyleRect} />
       </StyledRect>
     )
   }

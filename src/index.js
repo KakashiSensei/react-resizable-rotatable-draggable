@@ -15,6 +15,7 @@ export default class ResizableRect extends Component {
     zoomable: PropTypes.string,
     minWidth: PropTypes.number,
     minHeight: PropTypes.number,
+    zIndex: PropTypes.number,
     aspectRatio: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.bool
@@ -82,7 +83,7 @@ export default class ResizableRect extends Component {
   render () {
     const {
       top, left, width, height, rotateAngle, parentRotateAngle, zoomable, rotatable, style,
-      onRotate, onResizeStart, onResizeEnd, onRotateStart, onRotateEnd, onDragStart, onDragEnd
+      onRotate, onResizeStart, onResizeEnd, onRotateStart, onRotateEnd, onDragStart, onDragEnd, zIndex
     } = this.props
 
     const styles = { ...tLToCenter({ top, left, width, height, rotateAngle }) }
@@ -94,6 +95,7 @@ export default class ResizableRect extends Component {
         zoomable={zoomable}
         rotatable={Boolean(rotatable && onRotate)}
         parentRotateAngle={parentRotateAngle}
+        zIndex={zIndex}
 
         onResizeStart={onResizeStart}
         onResize={this.handleResize}
