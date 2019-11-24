@@ -153,7 +153,8 @@ export default class Rect extends PureComponent {
       transform: `rotate(${rotateAngle}deg)`,
       left: centerX - Math.abs(width) / 2,
       top: centerY - Math.abs(height) / 2,
-      ...style
+      ...style,
+      pointerEvents: 'none'
     }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d) // TODO: may be speed up
 
