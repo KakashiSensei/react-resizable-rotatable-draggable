@@ -159,58 +159,56 @@ export default class Rect extends PureComponent {
     }
     const styleRect = {
       ...baseStyleRect,
-      pointerEvents: 'none'
+      pointerEvents: 'none',
+      zIndex: 1000
     }
     const draggableStyleRect = {
       ...baseStyleRect,
       position: 'absolute',
-      top: 0,
-      left: 0,
-      transform: 'none',
-      width: styleRect.width - 6,
-      height: styleRect.height - 6,
       zIndex: zIndex || 0,
       pointerEvents: 'auto'
     }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d) // TODO: may be speed up
 
     return (
-      <StyledRect
-        ref={this.setElementRef}
-        className="rect single-resizer"
-        style={styleRect}
-      >
-        {
-          rotatable &&
-          <div className="rotate" onMouseDown={this.startRotate}>
-            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10.536 3.464A5 5 0 1 0 11 10l1.424 1.425a7 7 0 1 1-.475-9.374L13.659.34A.2.2 0 0 1 14 .483V5.5a.5.5 0 0 1-.5.5H8.483a.2.2 0 0 1-.142-.341l2.195-2.195z"
-                fill="black"
-                fillRule="nonzero"
-              />
-            </svg>
-          </div>
-        }
+      <React.Fragment>
+        <StyledRect
+          ref={this.setElementRef}
+          className="rect single-resizer"
+          style={styleRect}
+        >
+          {
+            rotatable &&
+            <div className="rotate" onMouseDown={this.startRotate}>
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.536 3.464A5 5 0 1 0 11 10l1.424 1.425a7 7 0 1 1-.475-9.374L13.659.34A.2.2 0 0 1 14 .483V5.5a.5.5 0 0 1-.5.5H8.483a.2.2 0 0 1-.142-.341l2.195-2.195z"
+                  fill="black"
+                  fillRule="nonzero"
+                />
+              </svg>
+            </div>
+          }
 
-        {
-          direction.map(d => {
-            const cursor = `${getCursor(rotateAngle + parentRotateAngle, d)}-resize`
-            return (
-              <div key={d} style={{ cursor }} className={`${zoomableMap[ d ]} resizable-handler`} onMouseDown={(e) => this.startResize(e, cursor)} />
-            )
-          })
-        }
+          {
+            direction.map(d => {
+              const cursor = `${getCursor(rotateAngle + parentRotateAngle, d)}-resize`
+              return (
+                <div key={d} style={{ cursor }} className={`${zoomableMap[ d ]} resizable-handler`} onMouseDown={(e) => this.startResize(e, cursor)} />
+              )
+            })
+          }
 
-        {
-          direction.map(d => {
-            return (
-              <div key={d} className={`${zoomableMap[ d ]} circle`} />
-            )
-          })
-        }
+          {
+            direction.map(d => {
+              return (
+                <div key={d} className={`${zoomableMap[ d ]} circle`} />
+              )
+            })
+          }
+        </StyledRect>
         <div className="rect single-resizer" onMouseDown={this.startDrag} style={draggableStyleRect} />
-      </StyledRect>
+      </React.Fragment>
     )
   }
 }
