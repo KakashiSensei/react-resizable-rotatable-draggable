@@ -14,13 +14,18 @@ const zoomableMap = {
   'sw': 'bl'
 }
 
+const CLICK_RESPONSE_TIME = 300
+
 export default class Rect extends PureComponent {
+  clickStart = 0
+
   static propTypes = {
     styles: PropTypes.object,
     style: PropTypes.object,
     zoomable: PropTypes.string,
     rotatable: PropTypes.bool,
     zIndex: PropTypes.number,
+    onClick: PropTypes.func,
     onResizeStart: PropTypes.func,
     onResize: PropTypes.func,
     onResizeEnd: PropTypes.func,
@@ -37,6 +42,7 @@ export default class Rect extends PureComponent {
 
   // Drag
   startDrag = (e) => {
+    this.clickStart = Date.now()
     e.persist()
     let { clientX: startX, clientY: startY } = e
     this.props.onDragStart && this.props.onDragStart(e)
@@ -136,6 +142,15 @@ export default class Rect extends PureComponent {
     document.addEventListener('mouseup', onUp)
   }
 
+  handleClick = (e) => {
+    const { onClick } = this.props
+    const dateNow = Date.now()
+    if (dateNow - this.clickStart > CLICK_RESPONSE_TIME) {
+      return
+    }
+    onClick()
+  }
+
   render () {
     const {
       styles: {
@@ -207,7 +222,7 @@ export default class Rect extends PureComponent {
             })
           }
         </StyledRect>
-        <div className="rect single-resizer" onMouseDown={this.startDrag} style={draggableStyleRect} />
+        <div className="rect single-resizer" onClick={this.handleClick} onMouseDown={this.startDrag} style={draggableStyleRect} />
       </React.Fragment>
     )
   }

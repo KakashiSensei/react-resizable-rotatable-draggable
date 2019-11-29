@@ -21,6 +21,7 @@ export default class ResizableRect extends Component {
       PropTypes.bool
     ]),
     style: PropTypes.any,
+    onClick: PropTypes.func,
     onRotateStart: PropTypes.func,
     onRotate: PropTypes.func,
     onRotateEnd: PropTypes.func,
@@ -39,6 +40,11 @@ export default class ResizableRect extends Component {
     zoomable: '',
     minWidth: 10,
     minHeight: 10
+  }
+
+  handleClick = () => {
+    console.log('handleClick')
+    this.props.onClick && this.props.onClick()
   }
 
   handleRotate = (angle, startAngle) => {
@@ -97,6 +103,7 @@ export default class ResizableRect extends Component {
         parentRotateAngle={parentRotateAngle}
         zIndex={zIndex}
 
+        onClick={this.handleClick}
         onResizeStart={onResizeStart}
         onResize={this.handleResize}
         onResizeEnd={onResizeEnd}
