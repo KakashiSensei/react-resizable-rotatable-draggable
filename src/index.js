@@ -42,9 +42,8 @@ export default class ResizableRect extends Component {
     minHeight: 10
   }
 
-  handleClick = () => {
-    console.log('handleClick')
-    this.props.onClick && this.props.onClick()
+  handleClick = (e) => {
+    this.props.onClick && this.props.onClick(e)
   }
 
   handleRotate = (angle, startAngle) => {
