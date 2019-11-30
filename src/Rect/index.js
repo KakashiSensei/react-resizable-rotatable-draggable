@@ -148,7 +148,8 @@ export default class Rect extends PureComponent {
     if (dateNow - this.clickStart > CLICK_RESPONSE_TIME) {
       return
     }
-    onClick()
+    // sending click event
+    onClick(e)
   }
 
   render () {
